@@ -5,45 +5,25 @@
         <field name="model">res.config.settings</field>
         <field name="inherit_id" ref="base_setup.res_config_settings_view_form"/>
         <field name="arch" type="xml">
-            <xpath expr="//div[hasclass('settings')]" position="inside">
-                <div class="app_settings_block" data-string="Discuss Media Cleanup"
-                     string="Discuss Media Cleanup" data-key="discuss_media_autodelete">
-                    <h2>Discuss Media Cleanup</h2>
-                    <div class="row mt16 o_settings_container" id="discuss_media_autodelete_setting">
-                        <div class="col-12 col-lg-6 o_setting_box">
-                            <div class="o_setting_left_pane">
-                                <field name="discuss_media_autodelete_enabled"/>
+            <xpath expr="//app[@name='general_settings']" position="inside">
+                <block title="Discuss Media Cleanup" name="discuss_media_cleanup_setting_container">
+                    <setting string="Auto-delete Discuss Files" help="Automatically and permanently delete files/media shared in Discuss channels and direct messages after a set number of days. Runs once a day. This does not affect attachments in other apps.">
+                        <field name="discuss_media_autodelete_enabled"/>
+                        <div class="content-group" invisible="not discuss_media_autodelete_enabled">
+                            <div class="mt16">
+                                <label for="discuss_media_autodelete_days" string="Delete files older than"/>
+                                <div class="d-flex align-items-center">
+                                    <field name="discuss_media_autodelete_days" class="o_light_label mx-2" style="width: 80px;"/>
+                                    <span>day(s)</span>
+                                </div>
                             </div>
-                            <div class="o_setting_right_pane">
-                                <label for="discuss_media_autodelete_enabled"
-                                       string="Auto-delete Discuss Files"/>
-                                <div class="text-muted">
-                                    Automatically and permanently delete files/media shared in
-                                    Discuss channels and direct messages after a set number of days.
-                                    Runs once a day. This does not affect attachments in other apps.
-                                </div>
-                                <div class="content-group" invisible="not discuss_media_autodelete_enabled">
-                                    <div class="mt16">
-                                        <label for="discuss_media_autodelete_days"
-                                               string="Delete files older than"/>
-                                        <div class="d-flex align-items-center">
-                                            <field name="discuss_media_autodelete_days"
-                                                   class="o_light_label mx-2"
-                                                   style="width: 80px;"/>
-                                            <span>day(s)</span>
-                                        </div>
-                                    </div>
-                                    <div class="mt8">
-                                        <field name="discuss_media_autodelete_only_media"
-                                               class="oe_inline"/>
-                                        <label for="discuss_media_autodelete_only_media"
-                                               string="Only media files (images, videos, audio) — keep other file types"/>
-                                    </div>
-                                </div>
+                            <div class="mt8">
+                                <field name="discuss_media_autodelete_only_media" class="oe_inline"/>
+                                <label for="discuss_media_autodelete_only_media" string="Only media files (images, videos, audio) — keep other file types"/>
                             </div>
                         </div>
-                    </div>
-                </div>
+                    </setting>
+                </block>
             </xpath>
         </field>
     </record>
